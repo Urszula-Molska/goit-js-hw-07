@@ -12,28 +12,21 @@ const markup = galleryItems
   .join('');
 const toHtml = gallery.insertAdjacentHTML('afterbegin', markup);
 
-console.log(galleryItems);
-
-//Wywołanie czegokolwiek na każdym obrazku, AddListener na galerii
-/*gallery.addEventListener('click', event => {
-  event.target.handleImage();
-  alert('addListener is working!!!!!!');
-});
-
-function handleImage() {
-  return console.log('image was clicked');
-}*/
-
 gallery.addEventListener('click', handleImage);
 
 function handleImage(event) {
   event.preventDefault();
-  return console.log(event.target);
-  //if (event.target === 'gallery__image') {
-  // return console.log('image was clicked');
-}
 
-/*const image = document.querySelector('.gallery__image');
-gallery.addEventListener('click', () => {
-  //console.log('addListener is working!!!!!!');
-});*/
+  if (event.target.nodeName !== 'IMG') {
+    return;
+  }
+  const dataSource = event.target.getAttribute('data-source');
+  const instance = basicLightbox.create(`<img src="${dataSource}"></img>`);
+  instance.show();
+
+  document.addEventListener('keyup', event => {
+    if (event.code === 'Escape') {
+      instance.close();
+    }
+  });
+}
