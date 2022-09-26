@@ -13,10 +13,6 @@ const toHtml = gallery.insertAdjacentHTML('afterbegin', markup);
 
 console.log(galleryItems);
 
-/*gallery.addEventListener('click', event => {
-  console.log('image was clicked');
-  event.preventDefault();
-});*/
 gallery.addEventListener('click', handleImage);
 function handleImage(event) {
   event.preventDefault();
@@ -25,13 +21,16 @@ function handleImage(event) {
   }
   let LightboxGallery = new SimpleLightbox('.gallery a');
   LightboxGallery.on('show.simplelightbox');
+  //captionsData;
+  //captionPosition;
+  //captionDelay;
 
+  LightboxGallery.defaultOptions.captionsData = 'alt';
+
+  LightboxGallery.defaultOptions.captionDelay = 250;
   document.addEventListener('keyup', event => {
     if (event.code === 'Escape') {
       LightboxGallery.close;
     }
   });
-  //});
-  //const LightboxGallery = gallery.simpleLightbox();
-  //LightboxGallery.next();
 }
