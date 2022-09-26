@@ -13,7 +13,6 @@ const markup = galleryItems
 
 const toHtml = gallery.insertAdjacentHTML('afterbegin', markup);
 gallery.addEventListener('click', handleImage);
-
 function handleImage(event) {
   event.preventDefault();
   if (event.target.nodeName !== 'IMG') {
